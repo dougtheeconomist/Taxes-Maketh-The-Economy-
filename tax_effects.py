@@ -34,15 +34,20 @@ df18 = df[df["survey_year"] == 2018]
 
 
 #Following block provides scatter comparison of gdp, pcgdp and population
-fig, axs=plt.subplots(1,3, figsize = (15,5))
-ax = axs[0]
+
+fig, axs=plt.subplots(2,2, figsize = (15, 10))
+ax = axs[0,0]
 gdp=ax.scatter(x = df18['ratio'], y = (df18['state_gdp']/1000))
 
-ax = axs[1]
+ax = axs[0,1]
 pop=ax.scatter(x = df18['ratio'], y = (df18['est_pop']/1000))
 
-ax = axs[2]
+ax = axs[1,0]
 pop=ax.scatter(x = df18['ratio'], y = (df18['percap_r_gdp']/1000))
+
+ax = axs[1,1]
+pop=ax.scatter(x = df18['ratio'], y = (df18['ue_rate']/1000))
+
 #End of block
 #consistently one outlier in both gdp and pop, but not an obvious one in percap
 #California is the outlier
@@ -53,8 +58,16 @@ rslt_df = dfe[dfe['Year'] != 2019]
 inter= rslt_df[rslt_df['State'] != 'D.C.']
 # an_urate.to_csv('employment_for_merge.csv')
 
-def var_list(data, group,):
-    '''defining a function to retrieve variances of unemployment rate and return tuple
-    of group(state) and variance for that group
-    '''
-    
+#to output list of tuples containing variance of unemployment rate, ordered by state_code
+out = []
+for i in range(1,51):
+    temp_df = dfe[dfe['state_code'] == i]
+    out.append(temp_df.unemployment_rate.var())
+
+#To plot these variances against tax ratio variable
+fig, ax=plt.subplots()
+var_=ax.scatter(x = df16['ratio'], y = out)
+
+#Now to plot these variances against tax ratio variable
+fig, ax=plt.subplots()
+var_=ax.scatter(x = df16['state_code'], y = out)
