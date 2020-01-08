@@ -16,3 +16,8 @@ more16.state_rev.corr(more16.uer_var)
 #-0.0338146568703492
 more16.fed_rev.corr(more16.uer_var)
 #-0.041285796067497306
+
+'''This variance was calculated across all 3 years of data;
+for a more accurate comparison next step will be isolating variance by year
+and finding correlations with those
+'''
