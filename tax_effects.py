@@ -6,31 +6,30 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('tax_effects.csv')
 '''~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~EDA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'''
 
-#don't need Tax_type column, so should get rid of it to simplify readouts
-df.drop('Tax_Type', inplace=True, axis=1)
-
 # to get idea of state per year
 #mean doesn't actually do anything unless drop year, then relevant
-# df.groupby(['Geo_Name', 'survey_year']).mean()['ratio']
+# df.groupby(['state', 'year']).mean()['ratio']
 
 #OR to view all means;
-df.groupby(['Geo_Name', 'survey_year']).mean()
+df.groupby(['state', 'year']).mean()
 
 df.describe()
-df.groupby(['survey_year']).mean()
+df.groupby(['year']).mean()
 
-# Now realize that I should convert these mon values to millions instead of thousands
-#for easier reading in interpreter
+# Now realize that I could convert these mon values to millions instead of thousands
+#for easier reading in interpreter; haven't done it
+
+#looking at correlations
 
 df.ratio.corr(df.state_gdp)
 #returns 0.26076037466984725
 df.ratio.corr(df.percap_r_gdp)
 #returns 0.3219715386156831
 
-#to gen sub-dataframes for each year
-df16 = df[df["survey_year"] == 2016]
-df17 = df[df["survey_year"] == 2017]
-df18 = df[df["survey_year"] == 2018]
+#to gen sub-dataframes for each year;
+df16 = df[df["year"] == 2016]
+df17 = df[df["year"] == 2017]
+df18 = df[df["year"] == 2018]
 
 
 #Following block provides scatter comparison of gdp, pcgdp and population
@@ -54,8 +53,8 @@ pop=ax.scatter(x = df18['ratio'], y = (df18['ue_rate']/1000))
 
 #used this code to sort out data by var value and then saved to csv to merge into main dataset
 #equivalent of keep if in Stata
-rslt_df = dfe[dfe['Year'] != 2019]
-inter= rslt_df[rslt_df['State'] != 'D.C.']
+rslt_df = dfe[dfe['year'] != 2019]
+inter= rslt_df[rslt_df['state'] != 'D.C.']
 # an_urate.to_csv('employment_for_merge.csv')
 
 #to output list of tuples containing variance of unemployment rate, ordered by state_code
@@ -64,6 +63,7 @@ for i in range(1,51):
     temp_df = dfe[dfe['state_code'] == i]
     out.append(temp_df.unemployment_rate.var())
 
+
 #To plot these variances against tax ratio variable
 fig, ax=plt.subplots()
 var_=ax.scatter(x = df16['ratio'], y = out)
@@ -71,3 +71,63 @@ var_=ax.scatter(x = df16['ratio'], y = out)
 #Now to plot these variances against tax ratio variable
 fig, ax=plt.subplots()
 var_=ax.scatter(x = df16['state_code'], y = out)
+
+#one clear outlier in variance of unemployment
+#its Alabama
+
+#To view use of this data see variance_analysis.py
+
+'''To do this for each year rather than overall, because I feel that this is a more
+Appropriate method given that I am using this data for comparisson to 
+data that is organized by specific years; find below 
+'''
+
+#2016
+dfe16=dfe[dfe['year'] == 2016]
+out16 = []
+for i in range(1,51):
+    temp_df = dfe16[dfe16['state_code'] == i]
+    out16.append(temp_df.unemployment_rate.var())
+#To save this output to csv;
+interim16=np.array(out16)
+testset16 = pd.DataFrame({'uer_var': interim16})
+testset16.to_csv('var16.csv')
+
+#2017
+dfe17=dfe[dfe['year'] == 2017]
+out17 = []
+for i in range(1,51):
+    temp_df = dfe17[dfe17['state_code'] == i]
+    out17.append(temp_df.unemployment_rate.var())
+
+#To save this output to csv;
+interim17=np.array(out17)
+testset17 = pd.DataFrame({'uer_var': interim17})
+testset17.to_csv('var17.csv')
+
+#2018
+dfe18=dfe[dfe['year'] == 2018]
+out18 = []
+for i in range(1,51):
+    temp_df = dfe18[dfe18['state_code'] == i]
+    out18.append(temp_df.unemployment_rate.var())
+    
+#To save this output to csv;
+interim18=np.array(out18)
+testset18 = pd.DataFrame({'uer_var': interim18})
+testset18.to_csv('var18.csv')
+
+'''Merged this data into main df, so will now be able to access it that way or in any
+of the dataframe slices I have made
+'''
+#looking at these correlations;
+df16.ratio.corr(df16.ue_variance)
+-0.41276376009714216
+df17.ratio.corr(df17.ue_variance)
+-0.13554552252235538
+df18.ratio.corr(df18.ue_variance)
+-0.11374612179590994
+
+
+'''~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~EDA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'''
+#now to figure out plotly . . .
