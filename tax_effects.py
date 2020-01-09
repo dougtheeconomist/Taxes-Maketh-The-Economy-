@@ -152,39 +152,39 @@ fig = go.Figure(data=go.Choropleth(
 
 fig.update_layout(
     title_text = 'States by Ratio of State to Federal Levels of Taxation 2017',
-    geo_scope='usa', # limite map scope to USA
+    geo_scope='usa', # limit map scope to USA
 )
 
 fig.show()
 
 #praphing by per capita gdp
 fig = go.Figure(data=go.Choropleth(
-    locations=df17['code'], # Spatial coordinates
-    z = df17['percap_r_gdp'].astype(float), # Data to be color-coded
-    locationmode = 'USA-states', # set of locations match entries in `locations`
+    locations=df17['code'], 
+    z = df17['percap_r_gdp'].astype(float), 
+    locationmode = 'USA-states', 
     colorscale = 'greens',
     colorbar_title = "Per Capita GDP",
 ))
 
 fig.update_layout(
     title_text = 'States by Per Capita Gross Domestic Product 2017',
-    geo_scope='usa', # limite map scope to USA
+    geo_scope='usa', 
 )
 
 fig.show()
 
 #graphing by unemployment rate
 fig = go.Figure(data=go.Choropleth(
-    locations=df17['code'], # Spatial coordinates
-    z = df17['ue_rate'].astype(float), # Data to be color-coded
-    locationmode = 'USA-states', # set of locations match entries in `locations`
+    locations=df17['code'], 
+    z = df17['ue_rate'].astype(float), 
+    locationmode = 'USA-states', 
     colorscale = 'oranges',
     colorbar_title = "Unemployment Rate",
 ))
 
 fig.update_layout(
     title_text = 'States by Unemployment Rate 2017',
-    geo_scope='usa', # limite map scope to USA
+    geo_scope='usa', 
 )
 
 fig.show()
@@ -192,48 +192,74 @@ fig.show()
 #graphing by variance by year
 #2018
 fig = go.Figure(data=go.Choropleth(
-    locations=df18['code'], # Spatial coordinates
-    z = df18['ue_variance'].astype(float), # Data to be color-coded
-    locationmode = 'USA-states', # set of locations match entries in `locations`
+    locations=df18['code'], 
+    z = df18['ue_variance'].astype(float), 
+    locationmode = 'USA-states', 
     colorscale = 'reds',
     colorbar_title = "Variance in Unemployment",
 ))
 
 fig.update_layout(
     title_text = 'States by Variance in Unemployment Rates 2018',
-    geo_scope='usa', # limite map scope to USA
+    geo_scope='usa', 
 )
 
 fig.show()
 
 #2017
 fig = go.Figure(data=go.Choropleth(
-    locations=df17['code'], # Spatial coordinates
-    z = df17['ue_variance'].astype(float), # Data to be color-coded
-    locationmode = 'USA-states', # set of locations match entries in `locations`
+    locations=df17['code'], 
+    z = df17['ue_variance'].astype(float), 
+    locationmode = 'USA-states', 
     colorscale = 'reds',
     colorbar_title = "Variance in Unemployment",
 ))
 
 fig.update_layout(
     title_text = 'States by Variance in Unemployment Rates 2017',
-    geo_scope='usa', # limite map scope to USA
+    geo_scope='usa', 
 )
 
 fig.show()
 
 #2016
 fig = go.Figure(data=go.Choropleth(
-    locations=df16['code'], # Spatial coordinates
-    z = df16['ue_variance'].astype(float), # Data to be color-coded
-    locationmode = 'USA-states', # set of locations match entries in `locations`
+    locations=df16['code'], 
+    z = df16['ue_variance'].astype(float), 
+    locationmode = 'USA-states', 
     colorscale = 'reds',
     colorbar_title = "Variance in Unemployment",
 ))
 
 fig.update_layout(
     title_text = 'States by Variance in Unemployment Rates 2016',
-    geo_scope='usa', # limite map scope to USA
+    geo_scope='usa', 
 )
 
 fig.show()
+
+'''~~~~~~~~~~~~~~~~~~~~~~~~~~GRAPHING HEAT MAPS WITH PLOTLY~~~~~~~~~~~~~~~~~~~~~~~~~~'''
+
+'''~~~~~~~~~~~~~~~~~~~~~~~~~~CONDUCTING HYPOTHESIS TESTING~~~~~~~~~~~~~~~~~~~~~~~~~~'''
+
+'''
+first step is to find cutoffs for highest, lowest 25% of values for tax ratio
+so that I can conduct a t-test with the economic performance indicators of
+these sub-groups mean I get these by looking at descriptive stats for the data
+'''
+
+#so from:
+df16.describe()
+#25% of ratio = .608
+#75% of ratio = .769
+
+df17.describe()
+#25% of ratio = .626
+#75% of ratio = .766
+
+df18.describe()
+#25% of ratio = .619
+#75% of ratio = .747
+
+#Now using these cutoffs to isolate my two sub-pops:
+
