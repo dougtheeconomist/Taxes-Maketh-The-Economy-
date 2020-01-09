@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
 
+import plotly.graph_objects as go
+
 df = pd.read_csv('tax_effects.csv')
 '''~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~EDA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'''
 
@@ -130,4 +132,108 @@ df18.ratio.corr(df18.ue_variance)
 
 
 '''~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~EDA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'''
+
+
+'''~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~GRAPHING_IN_PLOTLY~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'''
 #now to figure out plotly . . .
+#Looking at plots of variance by year, Alabama is no longer an outlier except in 2017
+#During other years, West Virginia is the obvious standout
+
+#graphs depicted for year 2017
+
+#graphing by ratio in 2017
+fig = go.Figure(data=go.Choropleth(
+    locations=df17['code'], # Spatial coordinates
+    z = df17['ratio'].astype(float), # Data to be color-coded
+    locationmode = 'USA-states', # set of locations match entries in `locations`
+    colorscale = 'blues',
+    colorbar_title = "State to Fed Tax Ratio",
+))
+
+fig.update_layout(
+    title_text = 'States by Ratio of State to Federal Levels of Taxation 2017',
+    geo_scope='usa', # limite map scope to USA
+)
+
+fig.show()
+
+#praphing by per capita gdp
+fig = go.Figure(data=go.Choropleth(
+    locations=df17['code'], # Spatial coordinates
+    z = df17['percap_r_gdp'].astype(float), # Data to be color-coded
+    locationmode = 'USA-states', # set of locations match entries in `locations`
+    colorscale = 'greens',
+    colorbar_title = "Per Capita GDP",
+))
+
+fig.update_layout(
+    title_text = 'States by Per Capita Gross Domestic Product 2017',
+    geo_scope='usa', # limite map scope to USA
+)
+
+fig.show()
+
+#graphing by unemployment rate
+fig = go.Figure(data=go.Choropleth(
+    locations=df17['code'], # Spatial coordinates
+    z = df17['ue_rate'].astype(float), # Data to be color-coded
+    locationmode = 'USA-states', # set of locations match entries in `locations`
+    colorscale = 'oranges',
+    colorbar_title = "Unemployment Rate",
+))
+
+fig.update_layout(
+    title_text = 'States by Unemployment Rate 2017',
+    geo_scope='usa', # limite map scope to USA
+)
+
+fig.show()
+
+#graphing by variance by year
+#2018
+fig = go.Figure(data=go.Choropleth(
+    locations=df18['code'], # Spatial coordinates
+    z = df18['ue_variance'].astype(float), # Data to be color-coded
+    locationmode = 'USA-states', # set of locations match entries in `locations`
+    colorscale = 'reds',
+    colorbar_title = "Variance in Unemployment",
+))
+
+fig.update_layout(
+    title_text = 'States by Variance in Unemployment Rates 2018',
+    geo_scope='usa', # limite map scope to USA
+)
+
+fig.show()
+
+#2017
+fig = go.Figure(data=go.Choropleth(
+    locations=df17['code'], # Spatial coordinates
+    z = df17['ue_variance'].astype(float), # Data to be color-coded
+    locationmode = 'USA-states', # set of locations match entries in `locations`
+    colorscale = 'reds',
+    colorbar_title = "Variance in Unemployment",
+))
+
+fig.update_layout(
+    title_text = 'States by Variance in Unemployment Rates 2017',
+    geo_scope='usa', # limite map scope to USA
+)
+
+fig.show()
+
+#2016
+fig = go.Figure(data=go.Choropleth(
+    locations=df16['code'], # Spatial coordinates
+    z = df16['ue_variance'].astype(float), # Data to be color-coded
+    locationmode = 'USA-states', # set of locations match entries in `locations`
+    colorscale = 'reds',
+    colorbar_title = "Variance in Unemployment",
+))
+
+fig.update_layout(
+    title_text = 'States by Variance in Unemployment Rates 2016',
+    geo_scope='usa', # limite map scope to USA
+)
+
+fig.show()
