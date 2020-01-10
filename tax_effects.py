@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 
 import plotly.graph_objects as go
 
+from scipy.stats import ttest_ind
+
 df = pd.read_csv('tax_effects.csv')
 '''~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~EDA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'''
 
@@ -262,4 +264,94 @@ df18.describe()
 #75% of ratio = .747
 
 #Now using these cutoffs to isolate my two sub-pops:
+#creating filter
+dwn_selector16 = df16['ratio'] <= 0.608
+#using filter to create dataframe slice
+lwrdf16 = df16[dwn_selector16 == True]
+lwrdf16.info()
+#13 observations
+
+#repeat to get top 25%
+up_selector16 = df16['ratio'] >= 0.769
+upprdf16 = df16[up_selector16 == True]
+upprdf16.info()
+#also 13 observations
+
+#repeat for 2017 data
+dwn_selector17 = df17['ratio'] <= 0.626
+#using filter to create dataframe slice
+lwrdf17 = df17[dwn_selector17 == True]
+lwrdf17.info()
+#13 observations
+
+#repeat to get top 25%
+up_selector17 = df17['ratio'] >= 0.766
+upprdf17 = df17[up_selector17 == True]
+upprdf17.info()
+#13 observation
+
+#again for 2018 data
+dwn_selector18 = df18['ratio'] <= 0.619
+#using filter to create dataframe slice
+lwrdf18 = df18[dwn_selector18 == True]
+lwrdf18.info()
+#13 observations
+
+#repeat to get top 25%
+up_selector18 = df18['ratio'] >= 0.747
+upprdf18 = df18[up_selector18 == True]
+upprdf18.info()
+
+ttest_ind(lwrdf16['percap_r_gdp'], upprdf16['percap_r_gdp'])
+#statistic=-1.9602654138934972, pvalue=0.06167327446098543
+
+ttest_ind(lwrdf16['ue_rate'], upprdf16['ue_rate'])
+#statistic=-0.48545248565514604, pvalue=0.6317576585483289
+#statistic=-0.4854524856551461, pvalue=0.6319060550598422
+ttest_ind(lwrdf16['ue_variance'], upprdf16['ue_variance'])
+#statistic=2.3386957894239027, pvalue=0.02801019799597558
+
+ttest_ind(lwrdf17['percap_r_gdp'], upprdf17['percap_r_gdp'])
+#statistic=-2.0542538393607357, pvalue=0.05099674268394256
+
+ttest_ind(lwrdf17['ue_rate'], upprdf17['ue_rate'])
+#statistic=-0.6665195032431541, pvalue=0.5114367425958994
+
+ttest_ind(lwrdf17['ue_variance'], upprdf17['ue_variance'])
+#statistic=1.8790019549073866, pvalue=0.07244233312650292
+
+ttest_ind(lwrdf18['percap_r_gdp'], upprdf18['percap_r_gdp'])
+#statistic=-1.8606330243459868, pvalue=0.07509231832176405
+
+ttest_ind(lwrdf18['ue_rate'], upprdf18['ue_rate'])
+#statistic=0.48856168080468526, pvalue=0.6306275657216134
+
+ttest_ind(lwrdf18['ue_variance'], upprdf18['ue_variance'])
+#statistic=1.1363545843996687, pvalue=0.26702808779460774
+
+'''~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'''
+#For whole set at once
+df.describe()
+#25% of ratio = .608
+#75% of ratio = .769
+
+dwn_selector = df['ratio'] <= 0.619
+#using filter to create dataframe slice
+lwrdf = df[dwn_selector == True]
+lwrdf.info()
+#38 observations
+
+#repeat to get top 25%
+up_selector = df['ratio'] >= 0.763
+upprdf = df[up_selector == True]
+upprdf.info()
+
+ttest_ind(lwrdf['percap_r_gdp'], upprdf['percap_r_gdp'])
+#statistic=-3.4795633296066093, pvalue=0.0008454717768740909
+
+ttest_ind(lwrdf['ue_rate'], upprdf['ue_rate'])
+#statistic=-0.4312072332182611, pvalue=0.6675712778285183
+
+ttest_ind(lwrdf17['ue_variance'], upprdf17['ue_variance'])
+#statistic=1.8790019549073866, pvalue=0.07244233312650292
 
