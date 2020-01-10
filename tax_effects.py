@@ -1,7 +1,9 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-%matplotlib inline
+
+#If running in jypter, may prefer to set the following for graphs:
+# %matplotlib inline
 
 import plotly.graph_objects as go
 
@@ -29,6 +31,10 @@ df.ratio.corr(df.state_gdp)
 #returns 0.26076037466984725
 df.ratio.corr(df.percap_r_gdp)
 #returns 0.3219715386156831
+df.ratio.corr(df.ue_variance)
+#-0.21874058110822947
+df.ratio.corr(df.ue_rate)
+#0.06351948387587661
 
 #to gen sub-dataframes for each year;
 df16 = df[df["year"] == 2016]
@@ -302,10 +308,14 @@ up_selector18 = df18['ratio'] >= 0.747
 upprdf18 = df18[up_selector18 == True]
 upprdf18.info()
 
-ttest_ind(lwrdf16['percap_r_gdp'], upprdf16['percap_r_gdp'])
+#conducting actual tests
+#and retaining p-values in list
+
+pv_list = []
+pv_list.append(ttest_ind(lwrdf16['percap_r_gdp'], upprdf16['percap_r_gdp'])[1])
 #statistic=-1.9602654138934972, pvalue=0.06167327446098543
 
-ttest_ind(lwrdf16['ue_rate'], upprdf16['ue_rate'])
+pv_list.append(ttest_ind(lwrdf16['ue_rate'], upprdf16['ue_rate'])
 #statistic=-0.48545248565514604, pvalue=0.6317576585483289
 #statistic=-0.4854524856551461, pvalue=0.6319060550598422
 ttest_ind(lwrdf16['ue_variance'], upprdf16['ue_variance'])
