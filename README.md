@@ -26,6 +26,10 @@ I start by looking at descriptive statistics and scatter plots of the data. When
 When I graph the annual means of my monthly unemployment rate against my tax ratio I see that this is much more flat than the other graphs; there is much less variation of unemployment rates across states with different tax rates. There is again an obvious outlier here; this is Alabama, who has much higher unemployment than anyone else. 
 Upon isolating variance of the monthly unemployment rates and then merging this in with the overall dataset and graphing this, I see that there is again not as obvious a trend as with the gdp data. There is again an obvious outlier here; this is Alabama, who has much higher unemployment than anyone else; by at least a factor of over two. It seems to fall just right of center of the graph as far as the tax ratio goes, so I’m not sure that this will actually skew my results. 
 As I examine this data further, specifically by each year I find that it is only in 2017 that Alabama is an outlier, it falls into the range of normal during the next two years. The state of West Virginia spikes higher in 2016 and 2018 making it a yearly outlier in these years, though it isn’t by enough to stand out when looking at the total three year variance the way that Alabama does. 
+
+![hopefully_scatter_plots](/images/te_scatter.png)
+Format: ![Alt Text](url)
+
 I also generate histograms of my variables to see how they are distributed, and I find that none of my variables of interest are normally distributed; the tails of the distribution are either much too fat, or in the case of the population estimate variable and the variance of the unemployment rate, appears to be exponentially distributed. This finding would be problematic if I were to attempt to model these factors using linear regression techniques, but as this is outside the scope of this study, I don’t worry about it here.  
 
 ## Primary Analysis
