@@ -43,7 +43,7 @@ df18 = df[df["year"] == 2018]
 
 
 #Following block provides scatter comparison of gdp, pcgdp and population
-
+#divided by 1000 returns graph of numbers in millions, for readability
 fig, axs=plt.subplots(2,2, figsize = (15, 10))
 ax = axs[0,0]
 gdp=ax.scatter(x = df18['ratio'], y = (df18['state_gdp']/1000))
@@ -53,9 +53,11 @@ pop=ax.scatter(x = df18['ratio'], y = (df18['est_pop']/1000))
 
 ax = axs[1,0]
 pop=ax.scatter(x = df18['ratio'], y = (df18['percap_r_gdp']/1000))
+ax.axis(ymin= 0)
 
 ax = axs[1,1]
-pop=ax.scatter(x = df18['ratio'], y = (df18['ue_rate']/1000))
+pop=ax.scatter(x = df18['ratio'], y = (df18['ue_rate']))
+ax.axis(ymin= 0)
 
 #End of block
 #consistently one outlier in both gdp and pop, but not an obvious one in percap
