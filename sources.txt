@@ -1,0 +1,18 @@
+The data that I utilized for this project was found at the following sources:
+1) The bureau of Economic Analysis, accessed on Jan 3, 2020
+    https://apps.bea.gov/itable/iTable.cfm?ReqID=70&step=1#reqid=70&step=1&isuri=1
+
+2)The U.S. Census Bureau, accessed on Dec 31, 2019
+    https://www.census.gov/data/tables/2018/econ/stc/2018-annual.html
+    https://www.census.gov/data/tables/2017/econ/stc/2017-annual.html
+    https://www.census.gov/data/tables/2016/econ/stc/2016-annual.html
+    https://www2.census.gov/programs-surveys/stc/technical-documentation/methodology/2016stcmethodology.pdf
+    Population Change and Rankings: April 1, 2010 to July 1, 2019 (NST-EST2019-popchg2010-2019) 
+
+The header image included in my readme was found at:
+    https://images.axios.com/smc37RehHyzLU8L3XZK1TJTTNd0=/0x0:1920x1080/1920x1080/2019/02/19/1550606443347.png
+
+The alternate unused header image contained within my image directory was found at:
+    https://i0.wp.com/thedailycpa.com/wp-content/uploads/2017/10/50898614_l.jpg?resize=1440%2C580&ssl=1
+
+Both images were accessed on Jan 12, 2020
