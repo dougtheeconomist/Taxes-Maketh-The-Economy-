@@ -37,25 +37,24 @@ I also generate histograms of my variables to see how they are distributed, and 
 First I look at correlations using my entire dataset including all three years of data. For the reader who is unfamiliar with correlation analysis, a correlation coefficient will be a value between -1 and 1. A value of 0 means that the two variables in question move randomly in relation to each other over time and are not correlated, whereas a value of 1 means that they are perfectly correlated and move at exactly the same rate. A value of -1 meaning that they move at the same rate, but in opposite directions. 
 Upon preliminary examination I find that there is a positive correlation between the ratio of state revenue to federal revenue and per capita gdp of roughly 0.32 . This is not an insignificant finding, there is some correlation here, but it is not a strong correlation. What is of interest is that what correlation there is, is positive. This means that we now have some evidence that supports the claim that a state with higher tax rates will have a higher gross domestic product per resident. The correlation coefficient between tax rates and unemployment rates is roughly 0.06. While the value of this coefficient is positive, it is really too low to conclude that there is any actual correlation here. When looking at the correlation between tax rates and the variance of the unemployment rate I can see a weak correlation here of -0.22. This tells us that there is again some, but not really strong evidence that states with higher tax rates have less volatile labor markets. 
 
-Next I conduct a series of t-tests to determine if the average economic indicators of states with the highest tax rates are statistically different than for the states with the lowest tax rates. In conducting these tests, I test not only the whole dataset but I also conduct a different test for each year of observations. My null hypothesis is that these averages will be the same for the two groups, against the alternative hypothesis that they will be different. The evidence that I find is mixed, and seems to reinforce the results of my correlation analysis. These results can be viewed in the following table 
-________________________________________________
-|T-Test Results			                       | 
-|______________________________________________|
+Next I conduct a series of t-tests to determine if the average economic indicators of states with the highest tax rates are statistically different than for the states with the lowest tax rates. In conducting these tests, I test not only the whole dataset but I also conduct a different test for each year of observations. My null hypothesis is that these averages will be the same for the two groups, against the alternative hypothesis that they will be different. The evidence that I find is mixed, and seems to reinforce the results of my correlation analysis. These results can be viewed in the following table. 
+
 |Year	| Test Variable	         |P-Value | n  |
-|______________________________________________|
+|-------|:-----------------------|:-------|:---|
 |2016	| Per Capita GDP	     |0.0617  | 13 |
 |2017	| Per Capita GDP	     |0.0510  | 13 |
 |2018	| Per Capita GDP	     |0.0751  | 13 |
-| all	| Per Capita GDP	     |0.0008  | 38 |
+|all	| Per Capita GDP	     |0.0008  | 38 |
 |2016	| Unemployment Rate	     |0.6319  | 13 |
 |2017	| Unemployment Rate	     |0.5114  | 13 |
 |2018	| Unemployment Rate	     |0.6306  | 13 |
-| all	| Unemployment Rate	     |0.6676  | 38 |
+|all	| Unemployment Rate	     |0.6676  | 38 |
 |2016	| Unemployment Variance	 |0.0280  | 13 |
 |2017	| Unemployment Variance	 |0.0724  | 13 |
 |2018	| Unemployment Variance	 |0.2670  | 13 |
-| all	| Unemployment Variance	 |0.0724  | 38 |
-|______________________________________________|
+|all	| Unemployment Variance	 |0.0724  | 38 |
+
+
 
 # Conclusion
 
