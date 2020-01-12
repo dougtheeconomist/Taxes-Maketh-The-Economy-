@@ -29,18 +29,17 @@ Upon isolating variance of the monthly unemployment rates and then merging this 
 As I examine this data further, specifically by each year I find that it is only in 2017 that Alabama is an outlier, it falls into the range of normal during the next two years. The state of West Virginia spikes higher in 2016 and 2018 making it a yearly outlier in these years, though it isn’t by enough to stand out when looking at the total three year variance the way that Alabama does. 
 
 ![scatter_plots](/images/te_scatter.png)
-Format: ![Alt Text](url)
 
 I also generate histograms of my variables to see how they are distributed, and I find that none of my variables of interest are normally distributed; the tails of the distributions are either much too fat, or in the case of the population estimate variable and the variance of the unemployment rate, appears to be exponentially distributed. This finding would be problematic if I were to attempt to model these factors using linear regression techniques, but as this is outside the scope of this study, I don’t worry about it here.
 The following graphs are heat maps for my variables of interest, and provide a sense of the makeup of the data.
 
-![scatter_plots](/images/states_by_ratio_2017.png)
+![ratio_heat_map](/images/states_by_ratio_2017.png)
 
-![scatter_plots](/images/states_by_percapita_gdp2017.png)
+![gdp_heat_map](/images/states_by_percapita_gdp2017.png)
 
-![scatter_plots](/images/states_by_employment_2017.png)
+![employment_heat_map](/images/states_by_employment_2017.png)
 
-![scatter_plots](/images/states_by_variance_2017.png)
+![variance_heat_map](/images/states_by_variance_2017.png)
 
 
 ## Primary Analysis
