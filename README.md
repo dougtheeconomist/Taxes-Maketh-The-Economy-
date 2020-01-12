@@ -22,6 +22,7 @@ To ascertain whether or not there is statistical evidence to support my friendâ€
 
 ## EDA
 
+Note to the reader: in this section I briefly discuss the process of initial data exploration, i.e. making sure there are not errors or outliers of note within the data, and just sort of seeing what I have in general. If the reader is primarily interested in my results without getting bogged down by technical details, it would be safe to skip ahead to the Primary Analysis and Conclusion sections. 
 I start by looking at descriptive statistics and scatter plots of the data. When I graph gdp and population against the ratio of state to federal tax income, I find that the state of California is a consistent outlier, although when I view a similar plot of per capita gdp I find that while California is one of the larger values, it no longer stands out; there are four states here that are higher when accounting for population. 
 When I graph the annual means of my monthly unemployment rate against my tax ratio I see that this is much more flat than the other graphs; there is much less variation of unemployment rates across states with different tax rates. There is again an obvious outlier here; this is Alabama, who has much higher unemployment than anyone else. 
 Upon isolating variance of the monthly unemployment rates and then merging this in with the overall dataset and graphing this, I see that there is again not as obvious a trend as with the gdp data. There is again an obvious outlier here; this is Alabama, who has much higher unemployment than anyone else; by at least a factor of over two. It seems to fall just right of center of the graph as far as the tax ratio goes, so Iâ€™m not sure that this will actually skew my results. 
@@ -58,5 +59,10 @@ Next I conduct a series of t-tests to determine if the average economic indicato
 
 # Conclusion
 
+So what can we conclude based on this evidence? We can say with confidence that states that have higher tax rates have somewhat higher gross domestic product per state resident. There is also a slight tendency for states with higher tax rates to have more stable unemployment rates month to month, but the average annual unemployment that this fluctuation centers on tends to be no different than that of states who have lower tax rates. If you live in a state with high tax rates like Minnesota, then congratulation; your state probably has a slightly bigger and more stable economy. 
+
+# Further Study
+
+If I were to take a deeper dive into this topic my next steps would likely to be to create a regression model in an attempt to either predict economic outcomes using the input of state tax rates, or to predict the tax structure of a state given economic factors. Another interesting direction to take would be to relax the assumption of uniform federal tax rates across states and see if the results found here still hold up. One way to do this while still using federal revenue as a way to benchmark state revenue would be to break the list of states into groupings of states with similarly structured industries and compare states within those groups, rather than comparing all fifty at a time. Doing this effectively would likely require more than just three years of data to compensate for the smaller number of observations in each case. 
 
 
