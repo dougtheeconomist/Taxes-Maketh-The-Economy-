@@ -367,3 +367,36 @@ ttest_ind(lwrdf['ue_rate'], upprdf['ue_rate'])
 ttest_ind(lwrdf17['ue_variance'], upprdf17['ue_variance'])
 #statistic=1.8790019549073866, pvalue=0.07244233312650292
 
+
+
+'''~~~~~~~~~~~~~~~~~~~~~Generating scatter figure for report~~~~~~~~~~~~~~~~~~~~~'''
+fig, axs=plt.subplots(2,2, figsize = (15, 10))
+ax = axs[0,0]
+gdp=ax.scatter(x = df18['ratio'], y = (df18['state_gdp']/1000))
+ax.set_xlabel('Taxation Ratio',fontsize = 18)
+ax.set_ylabel('State GPD',fontsize = 18)
+ax.set_title('2018 State Level GDP At A Glance',fontsize = 22, pad = 8)
+
+ax = axs[0,1]
+pop=ax.scatter(x = df18['ratio'], y = (df18['est_pop']/1000))
+ax.set_xlabel('Taxation Ratio',fontsize = 18)
+ax.set_ylabel('Estimated Population',fontsize = 18)
+ax.set_title('2018 State Population Estimates',fontsize = 22, pad = 8)
+
+ax = axs[1,0]
+pop=ax.scatter(x = df18['ratio'], y = (df18['percap_r_gdp']/1000))
+ax.axis(ymin= 0)
+ax.set_xlabel('Taxation Ratio',fontsize = 18)
+ax.set_ylabel('Per Capita GDP',fontsize = 18)
+ax.set_title('2018 Per Capita GDP At A Glance',fontsize = 22, pad = 8)
+
+ax = axs[1,1]
+pop=ax.scatter(x = df18['ratio'], y = (df18['ue_rate']))
+ax.axis(ymin= 0)
+ax.set_xlabel('Taxation Ratio',fontsize = 18)
+ax.set_ylabel('Unemployment Rate',fontsize = 18)
+ax.set_title('2018 Unemployment At A Glance',fontsize = 22, pad = 8)
+
+#Code to save these for inclusion in report! Here!
+plt.tight_layout()
+# plt.savefig('great_job.png')
